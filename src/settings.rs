@@ -2,6 +2,7 @@ use std::collections::HashSet;
 use std::fs::File;
 use std::io::BufReader;
 use std::path::{Path, PathBuf};
+use std::env;
 
 use anyhow::{Context, Result};
 use glob::glob;
@@ -43,7 +44,7 @@ pub struct Settings {
 
 impl Settings {
     pub fn path() -> String {
-        format!("{}/.kube/kubie.yaml", home_dir())
+        format!("{}/kubie.yaml", env::current_dir())
     }
 
     pub fn load() -> Result<Settings> {
